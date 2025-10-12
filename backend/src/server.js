@@ -1,14 +1,18 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import path from "path";
 import env from "./configs/environment.config.js";
 
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
+import { connectDB } from "./lib/db.js";
 
 const app = express();
 const __dirname = path.resolve();
 
 const PORT = env.PORT;
+
+app.use(express.json());
+// app.use(urlencoded({ extended: false }));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
@@ -20,4 +24,7 @@ if (env.NODE_ENV === "production") {
   );
 }
 
-app.listen(PORT, () => console.log("Server is running on port " + PORT));
+app.listen(PORT, () => {
+  console.log("Server is running on port " + PORT);
+  connectDB();
+});
