@@ -61,11 +61,10 @@ class AuthController extends BaseController {
           env.CLIENT_URL
         );
       } catch (error) {
-        console.error("Failed to send welcome email: ", error);
+        console.error("Failed to send welcome email: ");
       }
     } catch (error) {
       console.error(error);
-      jj;
       return new AuthController().handleError(res, error.message);
     }
   }
