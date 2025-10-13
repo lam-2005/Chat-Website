@@ -1,3 +1,5 @@
+import env from "../configs/environment.config.js";
+import { sendWelcomeEmail } from "../emails/emailHandlers.js";
 import { generateToken } from "../lib/utils.js";
 import User from "../models/User.js";
 import BaseController from "./base.controller.js";
@@ -45,12 +47,22 @@ class AuthController extends BaseController {
 
       const savedUser = await newUser.save();
       generateToken(savedUser._id, res);
-      return res.status(201).json({
+      res.status(201).json({
         _id: newUser._id,
         userName: newUser.userName,
         email: newUser.email,
         profilePic: newUser.profilePic,
       });
+
+      try {
+        await sendWelcomeEmail(
+          savedUser.email,
+          savedUser.userName,
+          env.CLIENT_URL
+        );
+      } catch (error) {
+        console.error("Failed to send welcome email: ", error);
+      }
     } catch (error) {
       console.error(error);
       jj;
