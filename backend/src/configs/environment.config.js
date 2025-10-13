@@ -12,5 +12,7 @@ const env = {
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+  ARCJET_KEY: process.env.ARCJET_KEY,
+  ARCJET_ENV: process.env.ARCJET_ENV,
 };
 export default env;
