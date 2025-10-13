@@ -70,11 +70,39 @@ class AuthController extends BaseController {
   }
 
   static async login(req, res) {
-    res.send("Login router");
+    const { email, password } = req.body;
+    try {
+      const user = await User.findOne({ email });
+      if (!user)
+        return new AuthController().handleError(
+          res,
+          "Thông tin không hợp lệ",
+          400
+        );
+
+      const isPasswordCorrect = await bcrypt.compare(password, user.password);
+      if (!isPasswordCorrect)
+        return new AuthController().handleError(
+          res,
+          "Thông tin không hợp lệ",
+          400
+        );
+      generateToken(user._id, res);
+      res.status(200).json({
+        _id: user._id,
+        userName: user.userName,
+        email: user.email,
+        profilePic: user.profilePic,
+      });
+    } catch (error) {
+      console.error("Lỗi khi đăng nhập: ", error);
+      return new AuthController().handleError(res, error.message);
+    }
   }
 
-  static async logout(req, res) {
-    res.send("Logout router");
+  static async logout(_, res) {
+    res.cookie("jwt", "", { maxAge: 0 });
+    return res.status(200).json({ message: "Đăng xuất thành công" });
   }
 }
 
