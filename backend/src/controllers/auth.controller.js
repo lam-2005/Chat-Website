@@ -73,6 +73,10 @@ class AuthController extends BaseController {
     const { email, password } = req.body;
     try {
       const user = await User.findOne({ email });
+
+      if (!email || !password)
+        return new AuthController().handleError(res, validate.empty, 400);
+
       if (!user)
         return new AuthController().handleError(
           res,
