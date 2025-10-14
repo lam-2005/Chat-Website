@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import path from "path";
 import env from "./configs/environment.config.js";
@@ -11,7 +12,7 @@ const app = express();
 const __dirname = path.resolve();
 
 const PORT = env.PORT;
-
+app.use(cors({ origin: env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
