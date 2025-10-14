@@ -73,6 +73,15 @@ class MessageController {
       const { id: receiverId } = req.params;
       const senderId = req.user._id;
 
+      if (!text && !image)
+        return handleError(res, "Text or Image is required", 400);
+
+      if (senderId.equals(receiverId))
+        return handleError(res, "Cannot send messages to yourself", 400);
+
+      const receiverExists = await User.exists({ _id: receiverId });
+      if (!receiverExists) return handleError(res, "Receiver not found", 404);
+
       let imageUrl;
       if (image) {
         const uploadRes = await cloudinary.uploader.upload(image);
