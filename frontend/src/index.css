@@ -1,3 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Libre+Franklin:wght@200&display=swap";
+@import "tailwindcss";
+@theme {
+  --font-display: "Josefin Sans", sans-serif;
+}
+@layer base {
+  body {
+    @apply font-display font-[23px] max-h-screen h-full;
+  }
+}
+@layer components {
+  .gradient-color {
+    @apply bg-gradient-to-tl from-orange-400  to-pink-300;
+  }
+}
