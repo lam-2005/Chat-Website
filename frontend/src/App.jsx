@@ -16,7 +16,7 @@ const App = () => {
 
   if (isCheckingAuth) return <PageLoader />;
   return (
-    <div className="">
+    <div className="h-screen w-full gradient-color">
       <Routes>
         <Route
           path="/"
@@ -31,7 +31,7 @@ const App = () => {
           element={!authUser ? <SignUp /> : <Navigate to={"/"} />}
         />
       </Routes>
-      <ToastContainer theme="colored" />
+      <ToastContainer />
     </div>
   );
 };
