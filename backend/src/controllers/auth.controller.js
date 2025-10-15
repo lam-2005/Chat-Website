@@ -7,20 +7,21 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 
 const validate = {
-  empty: "Hãy điền đầy đủ thông tin bắt buộc",
-  passwordLength: "Mật khẩu ít nhất 6 ký tự",
-  email: "Email không hợp lệ",
-  userExist: "Email đã tồn tại",
+  empty: "All fields are required",
+  passwordLength: "Password must be at least 6 characters",
+  email: "Invalid email format",
+  userExist: "Email already exist",
+  passwordMatched: "Password and confirm password do not match",
 };
 
 class AuthController {
   static async signup(req, res) {
-    const { userName, email, password } = req.body;
+    const { userName, email, password, confirmPassword } = req.body;
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     try {
-      if (!userName || !email || !password)
+      if (!userName || !email || !password || !confirmPassword)
         return handleError(res, validate.empty, 400);
 
       if (password.length < 6)
@@ -31,6 +32,8 @@ class AuthController {
       const user = await User.findOne({ email });
       if (user) return handleError(res, validate.userExist, 400);
 
+      if (confirmPassword !== password)
+        return handleError(res, validate.passwordMatched, 400);
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -71,11 +74,11 @@ class AuthController {
 
       if (!email || !password) return handleError(res, validate.empty, 400);
 
-      if (!user) return handleError(res, "Thông tin không hợp lệ", 400);
+      if (!user) return handleError(res, "Invalid credentials", 400);
 
       const isPasswordCorrect = await bcrypt.compare(password, user.password);
       if (!isPasswordCorrect)
-        return handleError(res, "Thông tin không hợp lệ", 400);
+        return handleError(res, "Password is incorrect", 400);
       generateToken(user._id, res);
       res.status(200).json({
         _id: user._id,
