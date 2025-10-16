@@ -27,7 +27,7 @@ const Login = () => {
   };
   return (
     <div
-      className="bg-card w-full max-w-[450px]  absolute top-1/2 left-1/2 -translate-1/2
+      className="bg-card w-[90%] max-w-[450px]  absolute top-1/2 left-1/2 -translate-1/2
     shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-2xl bg-white p-5 flex gap-4 flex-col
     "
     >
