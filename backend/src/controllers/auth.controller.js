@@ -100,7 +100,7 @@ class AuthController {
   static async update(req, res) {
     const { profilePic } = req.body;
     try {
-      if (!profilePic) return handleError(res, "Ảnh đại diện là bắc buộc", 400);
+      if (!profilePic) return handleError(res, "Image is required", 400);
 
       const userId = req.user._id;
 
