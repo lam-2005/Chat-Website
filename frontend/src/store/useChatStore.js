@@ -10,6 +10,8 @@ const useChatStore = create((set) => ({
   selectedUser: null,
   isUserLoading: false,
 
+  setActiveTab: (tab) => set({ activeTab: tab }),
+
   getAllContacts: async () => {
     set({ isUserLoading: true });
     try {
@@ -32,5 +34,7 @@ const useChatStore = create((set) => ({
       set({ isUserLoading: false });
     }
   },
+
+  setSelectedUser: () => {},
 }));
 export default useChatStore;
