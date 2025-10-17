@@ -10,7 +10,7 @@ import useChatStore from "../store/useChatStore";
 
 const ChatPage = () => {
   // const { logout } = useAuthStore();
-  const { allContacts, chats, activeTab, selectedUser } = useChatStore();
+  const { activeTab, selectedUser } = useChatStore();
   return (
     <div
       className="bg-card w-[90%] max-w-6xl h-[800px] absolute top-1/2 left-1/2 -translate-1/2

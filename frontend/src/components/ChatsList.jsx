@@ -29,9 +29,7 @@ const ChatsList = () => {
                 />
               </div>
             </div>
-            <h4 className="text-gray-200 font-medium truncate">
-              {chat.userName}
-            </h4>
+            <h4 className="font-medium truncate">{chat.userName}</h4>
           </div>
         </div>
       ))}

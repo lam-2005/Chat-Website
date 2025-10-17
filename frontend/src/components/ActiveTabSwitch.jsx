@@ -3,7 +3,6 @@ import useChatStore from "../store/useChatStore";
 
 const ActiveTabSwitch = () => {
   const { activeTab, setActiveTab } = useChatStore();
-  console.log(activeTab);
 
   return (
     <div role="tablist" className="tabs tabs-box bg-transparent p-2 flex m-2">
