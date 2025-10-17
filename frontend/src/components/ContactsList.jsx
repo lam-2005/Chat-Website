@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useChatStore from "../store/useChatStore";
 import UsersLoadingSkeleton from "./UsersLoadingSkeleton";
 
@@ -9,8 +9,6 @@ const ContactsList = () => {
     getAllContacts();
   }, [getAllContacts]);
   if (isUserLoading) return <UsersLoadingSkeleton />;
-  console.log(allContacts);
-
   return (
     <>
       {allContacts.map((contact) => (

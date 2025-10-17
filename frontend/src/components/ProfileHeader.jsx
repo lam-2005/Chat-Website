@@ -19,7 +19,7 @@ const ProfileHeader = () => {
     };
   };
   return (
-    <div className="p-5 border-b border-gray-300">
+    <div className="p-5 border-b border-gray-300 max-h-[84px]">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="avatar ">
