@@ -11,7 +11,7 @@ const Login = () => {
     password: "",
   });
 
-  const { sisLoggingIn, login } = useAuthStore();
+  const { isLoggingIn, login } = useAuthStore();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,7 +51,7 @@ const Login = () => {
         />
 
         <Button className={"text-xl"}>
-          {sisLoggingIn ? (
+          {isLoggingIn ? (
             <LoaderIcon className="w-full h-5 animate-spin text-center" />
           ) : (
             <span>SIGN IN!</span>
