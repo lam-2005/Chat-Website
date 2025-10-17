@@ -10,13 +10,13 @@ const ProfileHeader = () => {
     const file = e.target.files[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.readAsDataURL(file);
 
     reader.onloadend = async () => {
       const base64Image = reader.result;
       setSelectedImage(base64Image);
       await updateProfile({ profilePic: base64Image });
     };
+    reader.readAsDataURL(file);
   };
   return (
     <div className="p-5 border-b border-gray-300 max-h-[84px]">
@@ -52,8 +52,8 @@ const ProfileHeader = () => {
               className="hidden"
             />
           </div>
-          <div className="w-40 line-clamp-1" title="Phan Phúc Lâm">
-            <span>Phan Phúc Lâm</span>
+          <div className="w-40 line-clamp-1" title={authUser.userName}>
+            <span>{authUser.userName}</span>
           </div>
         </div>
         <div className="tooltip tooltip-bottom" data-tip="Logout">

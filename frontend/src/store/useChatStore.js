@@ -1,8 +1,9 @@
 import { toast } from "react-toastify";
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
+import useAuthStore from "./useAuthStore";
 
-const useChatStore = create((set) => ({
+const useChatStore = create((set, get) => ({
   isUserLoading: false,
   selectedUser: null,
   setSelectedUser: (selectedUser) => set({ selectedUser }),
@@ -47,6 +48,36 @@ const useChatStore = create((set) => ({
       toast.error(error.response.data.message || "Something went wrong");
     } finally {
       set({ isMessagesLoading: false });
+    }
+  },
+
+  sendMessage: async (data) => {
+    const { selectedUser, messages } = get();
+    const { authUser } = useAuthStore.getState();
+
+    const tempId = `temp-${Date.now()}`;
+
+    const optimistisMessage = {
+      _id: tempId,
+      senderId: authUser._id,
+      receiverId: selectedUser._id,
+      text: data.text,
+      image: data.image,
+      icon: data.icon,
+      createdAt: new Date().toISOString(),
+      isOptimistic: true,
+    };
+    set({ messages: [...messages, optimistisMessage] });
+    try {
+      const res = await axiosInstance.post(
+        `/messages/send/${selectedUser._id}`,
+        data
+      );
+      set({ messages: [...messages, res.data] });
+    } catch (error) {
+      set({ messages });
+
+      toast.error(error.response.data.message || "Something went wrong");
     }
   },
 }));

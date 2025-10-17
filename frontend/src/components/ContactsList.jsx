@@ -3,8 +3,13 @@ import useChatStore from "../store/useChatStore";
 import UsersLoadingSkeleton from "./UsersLoadingSkeleton";
 
 const ContactsList = () => {
-  const { getAllContacts, allContacts, isUserLoading, setSelectedUser } =
-    useChatStore();
+  const {
+    getAllContacts,
+    allContacts,
+    isUserLoading,
+    setSelectedUser,
+    selectedUser,
+  } = useChatStore();
   useEffect(() => {
     getAllContacts();
   }, [getAllContacts]);
@@ -14,7 +19,11 @@ const ContactsList = () => {
       {allContacts.map((contact) => (
         <div
           key={contact._id}
-          className="bg-pink-500/10 p-2 rounded-lg cursor-pointer hover:bg-pink-500/20 transition-colors"
+          className={`bg-pink-500/10 p-2 rounded-lg cursor-pointer hover:bg-pink-500/20 transition-colors ${
+            selectedUser && selectedUser._id === contact._id
+              ? "bg-pink-500/20"
+              : ""
+          }`}
           onClick={() => setSelectedUser(contact)}
         >
           <div className="flex items-center gap-3">
