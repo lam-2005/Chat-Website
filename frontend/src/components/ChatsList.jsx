@@ -4,8 +4,13 @@ import useChatStore from "../store/useChatStore";
 import NoChat from "./NoChat";
 
 const ChatsList = () => {
-  const { getMyChatPartners, chats, isUserLoading, setSelectedUser } =
-    useChatStore();
+  const {
+    getMyChatPartners,
+    chats,
+    isUserLoading,
+    setSelectedUser,
+    selectedUser,
+  } = useChatStore();
   useEffect(() => {
     getMyChatPartners();
   }, [getMyChatPartners]);
@@ -17,7 +22,11 @@ const ChatsList = () => {
       {chats.map((chat) => (
         <div
           key={chat._id}
-          className="bg-pink-500/10 p-2 rounded-lg cursor-pointer hover:bg-pink-500/20 transition-colors"
+          className={`bg-pink-500/10 p-2 rounded-lg cursor-pointer hover:bg-pink-500/20 transition-colors ${
+            selectedUser && selectedUser._id === chat._id
+              ? "bg-pink-500/20"
+              : ""
+          }`}
           onClick={() => setSelectedUser(chat)}
         >
           <div className="flex items-center gap-3">

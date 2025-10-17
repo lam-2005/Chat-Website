@@ -1,5 +1,6 @@
 @import "https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Libre+Franklin:wght@200&display=swap";
 @import "tailwindcss";
+@import "tailwindcss-animated";
 @plugin "daisyui";
 @theme {
   --font-display: "Josefin Sans", sans-serif;

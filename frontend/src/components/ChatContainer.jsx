@@ -10,13 +10,20 @@ const ChatContainer = () => {
   const { messages, isMessagesLoading, getMessagesByUserId, selectedUser } =
     useChatStore();
   const { authUser } = useAuthStore();
+  const messageEndRef = React.useRef(null);
+
   React.useEffect(() => {
     getMessagesByUserId(selectedUser._id);
   }, [selectedUser, getMessagesByUserId]);
+
+  React.useEffect(() => {
+    if (messageEndRef.current)
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
   return (
     <>
       <ChatHeader />
-      <div className="flex-1 px-5 overflow-y-auto py-8">
+      <div className="flex-1 px-5 overflow-y-auto py-8 bg-[#EBECF0]">
         {messages.length > 0 && !isMessagesLoading ? (
           <div className="max-w-3xl mx-auto space-y-6">
             {messages.map((msg) => (
@@ -41,10 +48,24 @@ const ChatContainer = () => {
                     ? "You"
                     : selectedUser.userName}
                   <time className="text-xs opacity-50">
-                    {new Date(msg.createdAt).toISOString().slice(11, 16)}
+                    {new Date(msg.createdAt).toLocaleTimeString(undefined, {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </time>
                 </div>
-                <div className="chat-bubble bg-pink-500 text-white m-0">
+                <div
+                  className={`
+                  chat-bubble text-white relative
+                  ${
+                    (msg.icon || msg.image) && !msg.text
+                      ? "bg-transparent"
+                      : msg.senderId === authUser._id
+                      ? "bg-pink-400"
+                      : "bg-white text-black!"
+                  }
+                  `}
+                >
                   {msg.image && (
                     <img
                       src={msg.image}
@@ -53,9 +74,16 @@ const ChatContainer = () => {
                     />
                   )}
                   {msg.text && <p className="mt-2">{msg.text}</p>}
+                  {msg.icon && (
+                    <div
+                      className="text-[40px] [&>svg]:w-10 [&>svg]:h-10 hover:animate-jump hover:animate-infinite animate-delay-1000"
+                      dangerouslySetInnerHTML={{ __html: msg.icon }}
+                    />
+                  )}
                 </div>
               </div>
             ))}
+            <div ref={messageEndRef}></div>
           </div>
         ) : isMessagesLoading ? (
           <MessageLoadingSkeleton />
