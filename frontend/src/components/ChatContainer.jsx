@@ -9,7 +9,7 @@ import MessageLoadingSkeleton from "./MessageLoadingSkeleton";
 const ChatContainer = () => {
   const { messages, isMessagesLoading, getMessagesByUserId, selectedUser } =
     useChatStore();
-  const { authUser } = useAuthStore();
+  const { authUser, onlineUsers } = useAuthStore();
   const messageEndRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -34,7 +34,13 @@ const ChatContainer = () => {
                 }`}
               >
                 {msg.senderId !== authUser._id && (
-                  <div className="chat-image avatar avatar-online">
+                  <div
+                    className={`chat-image avatar ${
+                      onlineUsers.includes(selectedUser._id)
+                        ? "avatar-online"
+                        : "avatar-offline"
+                    }`}
+                  >
                     <div className="w-10 rounded-full">
                       <img
                         alt={selectedUser.useName}
