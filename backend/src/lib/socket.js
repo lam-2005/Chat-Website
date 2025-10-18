@@ -18,6 +18,10 @@ io.use(socketAuthMiddleware);
 
 const userSocketMap = {};
 
+const getReceiverSocketId = (userId) => {
+  return userSocketMap[userId];
+};
+
 io.on("connection", (socket) => {
   console.log("A user connected", socket.user.userName);
 
@@ -36,4 +40,4 @@ io.on("connection", (socket) => {
   });
 });
 
-export { io, app, server };
+export { io, app, server, getReceiverSocketId };

@@ -80,5 +80,27 @@ const useChatStore = create((set, get) => ({
       toast.error(error.response.data.message || "Something went wrong");
     }
   },
+
+  subscribeToMessages: () => {
+    const { selectedUser } = get();
+
+    if (!selectedUser) return;
+    const { socket } = useAuthStore.getState();
+    if (!socket || !socket.connected) {
+      console.warn("Socket not ready yet — skipping subscription");
+      return;
+    }
+    socket.on("newMessage", (newMessage) => {
+      const isMessageSentFromSelectedUser =
+        newMessage.senderId === selectedUser._id;
+      if (!isMessageSentFromSelectedUser) return;
+      const currentMessages = get().messages;
+      set({ messages: [...currentMessages, newMessage] });
+    });
+  },
+  unSubscribeFromMessages: () => {
+    const socket = useAuthStore.getState().socket;
+    socket.off("newMessage");
+  },
 }));
 export default useChatStore;

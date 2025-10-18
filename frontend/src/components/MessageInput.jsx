@@ -89,6 +89,13 @@ const MessageInput = () => {
             e.target.style.height = "auto"; // reset để tính lại chiều cao
             e.target.style.height = e.target.scrollHeight + "px"; // đặt theo nội dung
           }}
+          onKeyDown={(e) => {
+            // 👇 Nếu chỉ nhấn Enter (không kèm Shift)
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault(); // ngăn xuống dòng
+              handleSend(e); // gọi hàm gửi tin nhắn
+            }
+          }}
           className="flex-1 bg-black/10 outline-none rounded-lg py-2 px-4 resize-none max-h-30 overflow-y-auto"
           placeholder="Type your message..."
           rows={1}
