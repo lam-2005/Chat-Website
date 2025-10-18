@@ -69,11 +69,11 @@ class MessageController {
 
   static async sendMessage(req, res) {
     try {
-      const { text, image } = req.body;
+      const { text, image, icon } = req.body;
       const { id: receiverId } = req.params;
       const senderId = req.user._id;
 
-      if (!text && !image)
+      if (!text && !image && !icon)
         return handleError(res, "Text or Image is required", 400);
 
       if (senderId.equals(receiverId))
@@ -93,6 +93,7 @@ class MessageController {
         receiverId,
         text,
         image,
+        icon,
       });
 
       const savedNewMessage = await newMessage.save();
