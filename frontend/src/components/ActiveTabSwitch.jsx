@@ -3,7 +3,7 @@ import useChatStore from "../store/useChatStore";
 import { AiOutlineMessage, AiFillMessage } from "react-icons/ai";
 import { RiContactsBook3Fill, RiContactsBook3Line } from "react-icons/ri";
 const ActiveTabSwitch = () => {
-  const { activeTab, setActiveTab } = useChatStore();
+  const { activeTab, setActiveTab, setSelectedUser } = useChatStore();
 
   return (
     <div
@@ -15,7 +15,10 @@ const ActiveTabSwitch = () => {
           activeTab === "chats" ? "bg-pink-500 text-white" : "text-gray-600"
         }`}
         data-tip="Chats"
-        onClick={() => setActiveTab("chats")}
+        onClick={() => {
+          setActiveTab("chats");
+          setSelectedUser(null);
+        }}
       >
         <button>
           {activeTab === "chats" ? <AiFillMessage /> : <AiOutlineMessage />}
@@ -26,7 +29,10 @@ const ActiveTabSwitch = () => {
           activeTab === "contacts" ? "bg-pink-500 text-white" : "text-gray-600"
         }`}
         data-tip="Contacts"
-        onClick={() => setActiveTab("contacts")}
+        onClick={() => {
+          setActiveTab("contacts");
+          setSelectedUser(null);
+        }}
       >
         <button>
           {activeTab === "contacts" ? (

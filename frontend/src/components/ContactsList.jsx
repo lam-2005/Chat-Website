@@ -19,8 +19,6 @@ const ContactsList = () => {
   if (isUserLoading) return <UsersLoadingSkeleton />;
   return (
     <>
-      <h1 className="text-2xl font-bold ">Contacts</h1>
-
       {allContacts.map((contact) => (
         <div
           key={contact._id}

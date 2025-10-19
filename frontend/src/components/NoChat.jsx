@@ -3,7 +3,7 @@ import React from "react";
 import useChatStore from "../store/useChatStore";
 
 const NoChat = () => {
-  const { setActiveTab } = useChatStore();
+  const { setActiveTab, setSelectedUser } = useChatStore();
   return (
     <div className="flex flex-col items-center gap-3 justify-center h-full">
       <div className="text-pink-600 bg-pink-500/20 p-3 rounded-full flex items-center justify-center">
@@ -16,7 +16,10 @@ const NoChat = () => {
         </p>
       </div>
       <button
-        onClick={() => setActiveTab("contacts")}
+        onClick={() => {
+          setActiveTab("contacts");
+          setSelectedUser(null);
+        }}
         className="px-3 py-2 hover:bg-pink-500 hover:text-white cursor-pointer transition-colors text-pink-600  bg-pink-500/20 rounded-lg "
       >
         Find contacts

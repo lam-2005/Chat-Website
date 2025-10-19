@@ -15,7 +15,7 @@ const App = () => {
 
   if (isCheckingAuth) return <PageLoader />;
   return (
-    <div className="h-screen w-full gradient-color">
+    <div className=" h-screen w-full gradient-color">
       <Routes>
         <Route
           path="/"
