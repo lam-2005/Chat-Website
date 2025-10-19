@@ -23,6 +23,7 @@ const ChatsList = () => {
 
   return (
     <>
+      <h1 className="text-2xl font-bold ">Chats</h1>
       {chats.map((chat) => (
         <div
           key={chat._id}

@@ -5,7 +5,7 @@ import useChatStore from "../store/useChatStore";
 const NoChat = () => {
   const { setActiveTab } = useChatStore();
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-3 justify-center h-full">
       <div className="text-pink-600 bg-pink-500/20 p-3 rounded-full flex items-center justify-center">
         <MessageCircle />
       </div>

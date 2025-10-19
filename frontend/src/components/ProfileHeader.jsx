@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 import { LoaderIcon, LogOut } from "lucide-react";
 const ProfileHeader = () => {
-  const { authUser, logout, isUpdatingProfile, updateProfile } = useAuthStore();
+  const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
 
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = React.useRef(null);
@@ -19,7 +19,7 @@ const ProfileHeader = () => {
     reader.readAsDataURL(file);
   };
   return (
-    <div className="p-5 border-b border-gray-300 max-h-[84px]">
+    <div className="tooltip tooltip-left" data-tip={authUser.userName}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="avatar ">
@@ -52,11 +52,11 @@ const ProfileHeader = () => {
               className="hidden"
             />
           </div>
-          <div className="w-40 line-clamp-1" title={authUser.userName}>
+          {/* <div className="w-40 line-clamp-1" title={authUser.userName}>
             <span>{authUser.userName}</span>
-          </div>
+          </div> */}
         </div>
-        <div className="tooltip tooltip-bottom" data-tip="Logout">
+        {/* <div className="tooltip tooltip-bottom" data-tip="Logout">
           <button
             className="cursor-pointer hover:text-error transition-colors flex items-center justify-center p-1
             "
@@ -64,7 +64,7 @@ const ProfileHeader = () => {
           >
             <LogOut size={20} />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
