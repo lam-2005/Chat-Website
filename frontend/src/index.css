@@ -19,4 +19,9 @@
   .gradient-color {
     @apply bg-gradient-to-tl from-orange-400  to-pink-300;
   }
+
+  #root {
+    height: 100%;
+    width: 100%;
+  }
 }
