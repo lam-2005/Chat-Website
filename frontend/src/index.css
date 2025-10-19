@@ -8,7 +8,7 @@
 @layer base {
   html,
   body {
-    @apply font-display text-[16px] bg-gradient-to-tl from-orange-400 to-pink-300 overflow-hidden;
+    @apply font-display text-[16px] bg-gradient-to-tl from-orange-400 to-pink-300 overflow-x-hidden;
     height: 100vh; /* ✅ chính xác hơn max-h-screen */
     width: 100%;
     margin: 0;
