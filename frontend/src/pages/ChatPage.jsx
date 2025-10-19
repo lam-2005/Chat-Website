@@ -14,7 +14,7 @@ const ChatPage = () => {
   const { activeTab, selectedUser } = useChatStore();
   return (
     <div
-      className="bg-card w-[95vw] max-[426px]:w-screen max-[426px]:h-screen max-w-6xl  h-[95%] md:h-[90vh] md:max-h-[95vh]  absolute top-1/2 left-1/2 -translate-1/2 max-[426px]:rounded-none
+      className="bg-card w-[95vw] max-[426px]:w-screen max-[426px]:h-screen max-w-6xl  h-[95%] md:h-[90vh] md:max-h-[95vh] max-[426px]:rounded-none
     shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-2xl flex "
     >
       <Navbar />
@@ -33,8 +33,8 @@ const ChatPage = () => {
       </div>
 
       <div
-        className={`h-full flex-1 flex-col bg-white backdrop-blur-sm rounded-r-2xl max-[426px]:rounded-none ${
-          selectedUser ? "flex" : "max-md:hidden"
+        className={`h-fu flex-1 flex-col bg-white backdrop-blur-sm rounded-r-2xl max-[426px]:rounded-none overflow-hidden ${
+          selectedUser ? "flex max-sm:rounded-l-2xl" : "max-md:hidden"
         }`}
       >
         {selectedUser ? <ChatContainer /> : <NoConversationPlaceholder />}

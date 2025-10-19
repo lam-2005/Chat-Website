@@ -6,8 +6,13 @@
   --font-display: "Josefin Sans", sans-serif;
 }
 @layer base {
+  html,
   body {
-    @apply font-display font-[23px] min-h-screen bg-gradient-to-tl from-orange-400 to-pink-300;
+    @apply font-display text-[16px] bg-gradient-to-tl from-orange-400 to-pink-300 overflow-hidden;
+    height: 100%; /* ✅ chính xác hơn max-h-screen */
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 }
 @layer components {
