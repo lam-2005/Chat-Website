@@ -14,7 +14,7 @@ const ChatHeader = () => {
     return () => window.removeEventListener("keydown", handleEscKey);
   }, [setSelectedUser]);
   return (
-    <div className="flex justify-between items-center bg-white border-b border-gray-300 max-h-[84px] px-5 flex-1 rounded-tr-2xl">
+    <div className="flex justify-between items-center bg-white border-b border-gray-300 max-h-[84px] px-5 flex-1 rounded-tr-2xl ">
       <div className="flex items-canter gap-3">
         <div
           className={`avatar ${
