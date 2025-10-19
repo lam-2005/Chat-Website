@@ -7,7 +7,7 @@
 }
 @layer base {
   body {
-    @apply font-display font-[23px] max-h-screen h-screen  bg-gradient-to-tl from-orange-400  to-pink-300 overflow-hidden;
+    @apply font-display font-[23px] min-h-screen bg-gradient-to-tl from-orange-400 to-pink-300 overflow-hidden;
   }
 }
 @layer components {

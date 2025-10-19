@@ -11,11 +11,11 @@ const App = () => {
   const { authUser, isCheckingAuth, checkAuth } = useAuthStore();
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
+  }, []);
 
   if (isCheckingAuth) return <PageLoader />;
   return (
-    <div className=" h-screen w-full gradient-color">
+    <div className="min-h-screen w-full gradient-color overflow-hidden">
       <Routes>
         <Route
           path="/"
