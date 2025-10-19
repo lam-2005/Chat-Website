@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <div
       className={`border-gray-300 border-r rounded-l-2xl p-4 flex flex-col justify-between items-center bg-white max-[426px]:rounded-none ${
-        selectedUser ? "hidden" : ""
+        selectedUser ? "max-sm:hidden" : ""
       }`}
     >
       <div className="flex flex-col gap-5 items-center">
