@@ -99,7 +99,11 @@ const useChatStore = create((set, get) => ({
     });
   },
   unSubscribeFromMessages: () => {
-    const socket = useAuthStore.getState().socket;
+    const { socket } = useAuthStore.getState();
+    if (!socket || !socket.connected) {
+      console.warn("Socket not ready yet — skipping subscription");
+      return;
+    }
     socket.off("newMessage");
   },
 }));
