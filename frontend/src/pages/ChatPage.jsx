@@ -14,12 +14,12 @@ const ChatPage = () => {
   const { activeTab, selectedUser } = useChatStore();
   return (
     <div
-      className="bg-card w-[95vw] max-w-6xl  h-[95%] md:h-[90vh] md:max-h-[95vh]  absolute top-1/2 left-1/2 -translate-1/2
+      className="bg-card w-[95vw] max-[426px]:w-screen max-[426px]:h-screen max-w-6xl  h-[95%] md:h-[90vh] md:max-h-[95vh]  absolute top-1/2 left-1/2 -translate-1/2 max-[426px]:rounded-none
     shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-2xl flex "
     >
       <Navbar />
       <div
-        className={`md:max-w-80 w-full max-md:rounded-r-2xl max-md:w-fit max-lg:w-65  flex-col border-r border-gray-300 bg-white ${
+        className={`max-[426px]:rounded-none! md:max-w-80 w-full max-md:rounded-r-2xl max-md:w-fit max-lg:w-65  flex-col border-r border-gray-300 bg-white ${
           selectedUser ? "max-md:hidden rounded-r-none!" : "flex flex-1 "
         }`}
       >
@@ -33,7 +33,7 @@ const ChatPage = () => {
       </div>
 
       <div
-        className={`flex-1 flex-col bg-white backdrop-blur-sm rounded-r-2xl ${
+        className={`flex-1 flex-col bg-white backdrop-blur-sm rounded-r-2xl max-[426px]:rounded-none ${
           selectedUser ? "flex" : "max-md:hidden"
         }`}
       >

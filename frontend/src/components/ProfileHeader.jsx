@@ -19,7 +19,7 @@ const ProfileHeader = () => {
     reader.readAsDataURL(file);
   };
   return (
-    <div className="tooltip tooltip-left" data-tip={authUser.userName}>
+    <div className="tooltip tooltip-right" data-tip={authUser.userName}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="avatar ">

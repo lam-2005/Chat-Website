@@ -11,7 +11,7 @@ const ActiveTabSwitch = () => {
       className="tabs tabs-box bg-transparent flex flex-col gap-4"
     >
       <div
-        className={`tooltip tooltip-left tab flex-1 flex items-center justify-center transition-colors duration-200 rounded-lg text-[27px] p-3 hover:bg-pink-500 hover:text-white  ${
+        className={`tooltip tooltip-right tab flex-1 flex items-center justify-center transition-colors duration-200 rounded-lg text-[27px] p-3 hover:bg-pink-500 hover:text-white  ${
           activeTab === "chats" ? "bg-pink-500 text-white" : "text-gray-600"
         }`}
         data-tip="Chats"
@@ -25,7 +25,7 @@ const ActiveTabSwitch = () => {
         </button>
       </div>
       <div
-        className={`tooltip tooltip-left tab flex-1 flex items-center justify-center transition-colors duration-200 rounded-lg text-[27px] p-3  hover:bg-pink-500 hover:text-white  ${
+        className={`tooltip tooltip-right tab flex-1 flex items-center justify-center transition-colors duration-200 rounded-lg text-[27px] p-3  hover:bg-pink-500 hover:text-white  ${
           activeTab === "contacts" ? "bg-pink-500 text-white" : "text-gray-600"
         }`}
         data-tip="Contacts"
