@@ -33,7 +33,7 @@ const ChatPage = () => {
       </div>
 
       <div
-        className={`flex-1 flex-col bg-white backdrop-blur-sm rounded-r-2xl max-[426px]:rounded-none overflow-hidden ${
+        className={`flex-1 flex-col bg-white backdrop-blur-sm rounded-r-2xl max-[426px]:rounded-none ${
           selectedUser ? "flex max-sm:rounded-l-2xl" : "max-md:hidden"
         }`}
       >
